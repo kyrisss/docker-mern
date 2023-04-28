@@ -1,24 +1,28 @@
-import {useCallback, useEffect, useState} from 'react'
-import axios from 'axios'
-import {List} from './List'
-import {Form} from './Form'
+import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import { List } from "./List";
+import { Form } from "./Form";
+
+const BASE_URL = "http://localhost:5000";
+
+const api = axios.create({ baseURL: BASE_URL });
 
 function App() {
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState([]);
 
   async function createNote(text) {
-    const note = await axios.post('/api/note', {text})
-    setNotes([...notes, {...note.data.note}])
+    const note = await api.post("/api/note", { text });
+    setNotes([...notes, { ...note.data.note }]);
   }
 
   const fetchNotes = useCallback(async () => {
-    const notes = await axios.get('/api/note')
-    setNotes(notes.data)
-  }, [])
+    const notes = await api.get("/api/note");
+    setNotes(notes.data);
+  }, []);
 
   useEffect(() => {
-    fetchNotes()
-  }, [fetchNotes])
+    fetchNotes();
+  }, [fetchNotes]);
 
   return (
     <>
@@ -30,7 +34,7 @@ function App() {
         <List list={notes} />
       </div>
     </>
-  )
+  );
 }
 
 export default App;
