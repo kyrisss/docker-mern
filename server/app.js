@@ -23,10 +23,11 @@ if (process.env.NODE_ENV === "production") {
 
 async function start() {
   try {
-    await mongoose.connect(`mongodb://mongodb:27017/notes`, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // await mongoose.connect(`mongodb://mongodb:27017/notes`, {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    // });
+    console.log("mongodb connected");
     app.listen(
       port,
       console.log.bind(console, `Server has been started on port ${port}`)
