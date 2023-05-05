@@ -13,7 +13,7 @@
 ```
 
 ```ps
-  docker run -d -p 5000:5000 --network notes-net -v /server:/app -v /app/node_modules --rm --name notes-backend server
+  docker run -d -p 5000:5000 --network notes-net -v D:/docker-mern/server:/app -v /app/node_modules --rm --name notes-backend server
 ```
 
 ### frontend
