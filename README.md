@@ -25,9 +25,9 @@
 ### frontend
 
 ```ps
-  docker build -t client .
+  docker build -t client ./client
 ```
 
 ```ps
-  docker run -d -p 3000:3000 --rm --name notes-frontend client
+  docker run -d -p 3000:3000 --rm -v D:/docker-mern/client/src:/app/src -v /app/node_modules --name notes-frontend client
 ```
