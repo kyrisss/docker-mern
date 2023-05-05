@@ -1,5 +1,11 @@
 # docker containers
 
+### network
+
+```ps
+  docker network create notes-net
+```
+
 ### mongoDB
 
 ```ps
