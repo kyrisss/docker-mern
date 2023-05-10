@@ -11,10 +11,14 @@ services:
       - mongo-data:/data/db
 
   frontend:
-    build: ./client
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
     container_name: "frontend"
     ports:
       - "3000:3000"
+    env_file:
+      - ./client/config/dev.env
     volumes:
       - ./client/src:/app/src
       - /app/node_modules
@@ -22,7 +26,7 @@ services:
   backend:
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: "backend"
     networks:
       - notes-net
