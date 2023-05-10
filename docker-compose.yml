@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  mongodb:
+    image: "mongo"
+    container_name: "mongodb" # not required
+    networks:
+      - notes-net # not required, auto create network for all containers
+    ports:
+      - "27017:27017" # not required, default port mongo
+    volumes:
+      - mongo-data:/data/db
+
+  frontend:
+    build: ./client
+    container_name: "frontend"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client/src:/app/src
+      - /app/node_modules
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: "backend"
+    networks:
+      - notes-net
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+volumes:
+  mongo-data:
+networks:
+  notes-net:

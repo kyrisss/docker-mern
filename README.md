@@ -31,3 +31,9 @@
 ```ps
   docker run -d -p 3000:3000 --rm -v D:/docker-mern/client/src:/app/src -v /app/node_modules --name notes-frontend client
 ```
+
+### docker-compose
+
+```ps
+  docker-compose -f docker-compose.yml up -d
+```
