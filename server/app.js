@@ -11,16 +11,6 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 app.use("/api/note", routes);
 
-if (process.env.NODE_ENV === "production") {
-  app.use("/", express.static(path.join(__dirname, "..", "client", "build")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.resolve(__dirname, "..", "client", "build", "index.html")
-    );
-  });
-}
-
 async function start() {
   try {
     await mongoose.connect(`mongodb://mongodb:27017/notes`, {
@@ -30,7 +20,7 @@ async function start() {
     console.log("mongodb connected");
     app.listen(
       port,
-      console.log.bind(console, `Server has been started on port ${port} aaa`)
+      console.log.bind(console, `Server has been started on port ${port}`)
     );
   } catch (e) {
     console.log(e);

@@ -42,8 +42,14 @@
   docker run -d -p 80:80 --rm -v D:/docker-mern/client/src:/app/src -v /app/node_modules --name frontend-prod client-prod
 ```
 
-### docker-compose
+### docker-compose dev
 
 ```ps
-  docker-compose -f docker-compose.yml up -d
+  docker-compose -f docker-compose.dev.yml up -d
+```
+
+### docker-compose dev
+
+```ps
+  docker-compose -f docker-compose.prod.yml up -d
 ```

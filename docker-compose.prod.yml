@@ -4,7 +4,7 @@ services:
     image: "mongo"
     container_name: "mongodb" # not required
     networks:
-      - notes-net # not required, auto create network for all containers
+      - notes-net-prod # not required, auto create network for all containers
     ports:
       - "27017:27017" # not required, default port mongo
     volumes:
@@ -17,11 +17,12 @@ services:
     container_name: "frontend"
     ports:
       - "80:80"
+    environment:
+      REACT_APP_API_URL: http://localhost:5000
     env_file:
-      - ./client/config/prod.env
-    # volumes:
-    #   - ./client/src:/app/src
-    #   - /app/node_modules
+      - ./client/config/.env.prod
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -29,17 +30,14 @@ services:
       dockerfile: Dockerfile.prod
     container_name: "backend"
     networks:
-      - notes-net
+      - notes-net-prod
     ports:
       - "5000:5000"
-    # volumes:
-    #   - ./server:/app
-    #   - /app/node_modules
     env_file:
-      - ./server/config/prod.env
+      - ./server/config/.env.prod
     depends_on:
       - mongodb
 volumes:
   mongo-prod:
 networks:
-  notes-net:
+  notes-net-prod:

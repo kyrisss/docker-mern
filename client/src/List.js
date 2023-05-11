@@ -2,7 +2,7 @@ export function List({ list = [] }) {
   if (list.length === 0) {
     return <p className="text-center">No notes yet.</p>;
   }
-
+  console.log(list);
   return (
     <ul className="list">
       {list.map((note) => (

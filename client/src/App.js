@@ -3,8 +3,9 @@ import axios from "axios";
 import { List } from "./List";
 import { Form } from "./Form";
 
-const BASE_URL = process.env.REACT_APP_API_URL;
-console.log(process.env);
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+console.log("process.env", process.env);
+console.log("BASE_URL", BASE_URL);
 
 const api = axios.create({ baseURL: BASE_URL });
 
